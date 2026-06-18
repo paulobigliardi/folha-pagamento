@@ -1,6 +1,6 @@
 # Folha de Pagamento
 ## Descrição
-[Sistema que simula e calcula com algumas regras de négocio como imposto e bonus, tratamento de erros e validações uma folha de pagamento de funcionários de uma empresa. Serve para aprimorar minhas habilidades em desenvolvimento back-end e banco de dados relacionais.](https://github.com/paulobigliardi/folha-pagamento.git)
+[Sistema que simula e calcula com algumas regras de negócio como imposto e bonus, tratamento de erros e validações uma folha de pagamento de funcionários de uma empresa. Serve para aprimorar minhas habilidades em desenvolvimento back-end e banco de dados relacionais.](https://github.com/paulobigliardi/folha-pagamento.git)
 ## Tecnologias
 - Java 21
 - Spring Boot 
