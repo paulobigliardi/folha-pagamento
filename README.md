@@ -1,4 +1,13 @@
 # Folha de Pagamento
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-green)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-blue)
+![Maven](https://img.shields.io/badge/Maven-red)
+![JUnit](https://img.shields.io/badge/JUnit-5-green)
+![Mockito](https://img.shields.io/badge/Mockito-blue)
+![JPA](https://img.shields.io/badge/JPA-gray)
+![Thunder Client](https://img.shields.io/badge/Thunder%20Client-purple)
+![Postbird](https://img.shields.io/badge/Postbird-blue)
 ## Descrição
 [Sistema que simula e calcula com algumas regras de negócio como imposto e bonus, tratamento de erros e validações uma folha de pagamento de funcionários de uma empresa. Serve para aprimorar minhas habilidades em desenvolvimento back-end e banco de dados relacionais.](https://github.com/paulobigliardi/folha-pagamento.git)
 ## Tecnologias
