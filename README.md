@@ -36,10 +36,36 @@ Rodar o projeto com o comando /mvnw spring-boot:run para inicializar o sistema.
 ### Funcionario
 - GET /funcionarios — lista todos os funcionários
 - POST /funcionarios — cadastra um funcionário
-- PUT /funcionarios/{id} — atualiza um funcionário 
+``` json
+ {
+  "nome": "João Silva",
+  "salario": 2000.00
+}
+```
+- PUT /funcionarios/{id} — atualiza um funcionário
+``` json
+ {
+    "nome": "João Silva",
+    "salario": 2200.00
+}
+```
 - DELETE /funcionarios/{id} — deleta um funcionário
 ### Gerente
 - GET /gerentes - lista todos os gerentes
 - POST /gerentes - cadastra um novo gerente
+```json
+ {
+    "nome": "Pietro Santos",
+    "salario": 6000.00,
+    "bonus": 1200.00
+}
+```
 - PUT /gerentes/{id} - atualiza um gerente
+``` json
+ {
+    "nome": "Pietro Santos",
+    "salario": 6600.00,
+    "bonus": 1400.00
+}
+```
 - DELETE /gerentes/{id} - deleta um gerente
