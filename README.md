@@ -24,6 +24,12 @@
 Utilizando o Postbird criar um banco de dados com o nome folha_pagamento e criar com CREATE DATABASE folha_pagamento para a empresa, utilizando Funcionarios e Gerentes.
 ### - Configurar as credenciais do Banco de Dados 
 No application.properties criar as credenciais spring.datasource.url, spring.datasource.username e spring.datasource.password, para garantir a segurança do banco de dados no projeto.
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/folha_pagamento
+spring.datasource.username=seu_usuario
+spring.datasource.password=sua_senha
+spring.jpa.hibernate.ddl-auto=update
+```
 ### - Rodar o Projeto com Maven
 Rodar o projeto com o comando /mvnw spring-boot:run para inicializar o sistema.
 ## Endpoints
