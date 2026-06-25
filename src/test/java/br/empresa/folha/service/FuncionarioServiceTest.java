@@ -3,7 +3,6 @@ package br.empresa.folha.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -16,8 +15,8 @@ import br.empresa.folha.model.Funcionario;
 import br.empresa.folha.repository.FuncionarioRepository;
 
 @ExtendWith(MockitoExtension.class)
-public class FuncionarioServiceTest {
-    
+class FuncionarioServiceTest {
+
     @Mock
     FuncionarioRepository funcionarioRepository;
 
@@ -25,13 +24,13 @@ public class FuncionarioServiceTest {
     FuncionarioService funcionarioService;
 
     @Test
-    void testarListaTodos() {
-        List<Funcionario> lista = new ArrayList<>();
-        lista.add(new Funcionario());
-        when(funcionarioRepository.findAll()).thenReturn(lista);
+    void testeDescontoINSS() {
+        Funcionario f = new Funcionario();
+        f.setSalario(2600.0);
+        when(funcionarioRepository.findAll()).thenReturn(List.of(f));
 
-        List<Funcionario> resultado = funcionarioService.listarTodos();
+        funcionarioService.descontoINSS();
 
-        assertEquals(1, resultado.size());
+        assertEquals(209.685, f.getImposto(), 0.001);
     }
 }

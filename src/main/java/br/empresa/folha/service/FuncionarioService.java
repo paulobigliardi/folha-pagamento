@@ -11,11 +11,36 @@ import br.empresa.folha.repository.FuncionarioRepository;
 @Service
 public class FuncionarioService {
     
-    public void calcular(Funcionario funcionario) {
-        Double imposto = funcionario.getSalario() * 0.09;
-        Double salarioLiquido = funcionario.getSalario() - imposto;
-        funcionario.setImposto(imposto);
-        funcionario.setSalarioLiquido(salarioLiquido);
+    public void descontoINSS() {
+        
+        List<Funcionario> funcionarios = funcionarioRepository.findAll();
+        
+        for (Funcionario funcionario : funcionarios) {
+        Double inss = 0.0;
+        Double salario = funcionario.getSalario();
+        if (salario <= 1621.00) {
+            inss += salario * 0.075;                          
+
+        } else if (salario <= 2902.84) {
+            inss += 1621.00 * 0.075;                          
+            inss += (salario - 1621.00) * 0.09;                     
+
+        } else if (salario <= 4354.27) {
+            inss += 1621.00 * 0.075;                          
+            inss += (2902.84 - 1621.00) * 0.09;                     
+            inss += (salario - 2902.84) * 0.12;                     
+
+        } else if (salario <= 8475.55) {
+            inss += 1621.00 * 0.075;                          
+            inss += (2902.84 - 1621.00) * 0.09;                     
+            inss += (4354.27 - 2902.84) * 0.12;                      
+            inss += (salario - 4354.27) * 0.14;                   
+        }
+        funcionario.setImposto(inss);
+        double liquido = salarioLiquido(salario, inss, 0.0);
+        funcionario.setSalarioLiquido(liquido);
+        funcionarioRepository.save(funcionario);
+}
     }
 
     public double salarioLiquido(Double salario, Double imposto, Double salarioLiquido) {
@@ -38,8 +63,10 @@ public class FuncionarioService {
 
     public Funcionario salvar(Funcionario funcionario) {
         if (funcionario == null) return null;
-        calcular(funcionario);
-        return funcionarioRepository.save(funcionario);
+       
+        Funcionario salvo = funcionarioRepository.save(funcionario);
+         descontoINSS();
+         return salvo;
     }
     public void deletar(Long id) {
         if (id == null) return;
@@ -50,9 +77,11 @@ public class FuncionarioService {
         if(id == null || funcionario == null) return null;
         Funcionario atualizacao = funcionarioRepository.findById(id).orElse(null);
         if (atualizacao == null) return null;
-        calcular(funcionario);
+        
         atualizacao.setNome(funcionario.getNome());
         atualizacao.setSalario(funcionario.getSalario());
-        return funcionarioRepository.save(atualizacao);
+        funcionarioRepository.save(atualizacao);
+        descontoINSS();
+        return atualizacao;
     }
 }

@@ -1,5 +1,7 @@
 package br.empresa.folha.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.NotBlank;
 import  jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Pattern;;
@@ -15,7 +18,8 @@ import jakarta.validation.constraints.Pattern;;
 public class Funcionario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "funcionario_seq")
+    @SequenceGenerator(name = "funcionario_seq", sequenceName = "funcionario_id_seq", allocationSize = 1)
     private long id;
 
     @NotBlank(message = "Nome deve ser obrigatório.")
@@ -26,7 +30,10 @@ public class Funcionario {
     @DecimalMin(value = "1621.00", message = "Salário deve ser igual ou maior que o salário mínimo.")
     private Double salario;
 
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT, pattern = "0.00")
     private double imposto;
+
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_FLOAT, pattern = "0.00")
     private double salarioLiquido;
 
     public long getId() {
